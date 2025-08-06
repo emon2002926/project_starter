@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:project_starter/core/widget/text/app_text.dart';
 import '../../core/constants/app_assert_image.dart';
 import 'controller/splash_controller.dart';
 
@@ -19,11 +20,17 @@ class SplashScreen extends StatelessWidget {
         body: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Image.asset(
-              AppAssertImage.instance.splashImage, // Your image path
-              width: MediaQuery.of(context).size.width * 0.75,
-              fit: BoxFit.contain,
+            child: AppText(
+              data: 'Project Starter',
+              fontSize: 50,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
+            // child: Image.asset(
+            //   AppAssertImage.instance.splashImage, // Your image path
+            //   width: MediaQuery.of(context).size.width * 0.75,
+            //   fit: BoxFit.contain,
+            // ),
           ),
         ),
       ),

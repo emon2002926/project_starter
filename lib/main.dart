@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:project_starter/routes/app_routes_file.dart';
 import 'features/home/home_screen.dart';
+import 'features/splash/controller/splash_controller.dart';
 void main() {
+  Get.put(SplashController());  // Register the controller
   runApp(const MainEntryApp());
 }
 class MainEntryApp extends StatelessWidget {

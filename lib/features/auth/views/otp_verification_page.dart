@@ -31,6 +31,7 @@ class OtpVerificationPage extends StatelessWidget {
             horizontal: width * 0.06,
           ),
           child: Container(
+
             decoration: BoxDecoration(
               color: Colors.grey.shade200,
               borderRadius: BorderRadius.circular(16),
@@ -45,7 +46,7 @@ class OtpVerificationPage extends StatelessWidget {
 
                     // Title
                     AppText(
-                      data: 'Check your email',
+                      data: 'Check your email ',
                       fontSize: width * 0.055,
                       fontWeight: FontWeight.bold,
                     ),

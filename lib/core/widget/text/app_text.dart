@@ -52,7 +52,7 @@ class AppText extends StatelessWidget {
       style: baseStyle.copyWith(
         height: height,
         fontSize: fontSize,
-        color: color ?? Colors.black,
+        color: color ?? Color(0xff333333),
         fontWeight: fontWeight,
         fontFamily: fontFamily ?? AppConstant.instance.poppins,
         decoration: decoration,

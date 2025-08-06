@@ -13,25 +13,21 @@ class SplashScreen extends StatelessWidget {
     // Initialize the controller using Get.put() or Get.lazyPut() in main.dart for better optimization
     final controller = Get.find<SplashController>();
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light, // White status bar icons
-      child: Scaffold(
-        backgroundColor: const Color(0xFF1E1E1E),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: AppText(
-              data: 'Project Starter',
-              fontSize: 50,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-            // child: Image.asset(
-            //   AppAssertImage.instance.splashImage, // Your image path
-            //   width: MediaQuery.of(context).size.width * 0.75,
-            //   fit: BoxFit.contain,
-            // ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: AppText(
+            data: 'Chart AI',
+            fontSize: 50,
+            fontWeight: FontWeight.bold,
           ),
+          // child: Image.asset(
+          //   AppAssertImage.instance.splashImage, // Your image path
+          //   width: MediaQuery.of(context).size.width * 0.75,
+          //   fit: BoxFit.contain,
+          // ),
         ),
       ),
     );

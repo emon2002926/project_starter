@@ -18,13 +18,14 @@ class SocialLoginButtons extends StatelessWidget {
           width: 20,
           height: 20,
           child: Image.asset(iconPath),
+
         ),
-        label: AppText(color: Colors.white, data:title),
+        label: AppText(color: Color(0xff333333), data:title),
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25),
           ),
-          side: const BorderSide(color: Colors.white, width: 1.5),
+          side: const BorderSide(color: Colors.grey, width: 1),
         ),
       ),
     );

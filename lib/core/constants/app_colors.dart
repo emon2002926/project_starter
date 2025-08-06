@@ -9,7 +9,7 @@ class AppColors {
   ////////
   final Color boxBg = const Color(0xffEBF4FF);
   final Color boxBg2 = const Color(0xffBDD3EC);
-  final Color appBackground = const Color(0xff2c2d2c);
+  final Color appBackground = const Color(0xfff4f4f5);
   final Color appBarBackground = const Color(0xffd5ecc5);
   final Color profileBackground = const Color(0xC7CFCFCF);
 

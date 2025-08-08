@@ -19,7 +19,7 @@ class SplashScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: AppText(
-            data: 'Chart AI',
+            data: 'Deal Detector',
             fontSize: 50,
             fontWeight: FontWeight.bold,
           ),

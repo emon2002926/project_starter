@@ -38,7 +38,8 @@ class LoginController extends GetxController {
   }
 
   void login() async {
-    if (!_validateForm()) { CustomSnackbar.showSnackbar(Get.context!, "Error", errorMessage.value);return;}
+    if (!_validateForm()) { CustomSnackbar.showSnackbar(Get.context!,
+        "Error", errorMessage.value);return;}
 
     isLoading.value = true;
 
@@ -49,19 +50,25 @@ class LoginController extends GetxController {
       password: "admin",
     );
 
-    try {
-      final response = await repository.login(loginRequest);
-      isLoading.value = false;
-      if (response?.access.isNotEmpty ?? false) {
-        Get.offAllNamed(AppRoutes.home);
-      } else {
-        errorMessage.value = "Invalid credentials or network issue";
-      }
-    } catch (e) {
-      isLoading.value = false;
-      errorMessage.value = "An error occurred: $e";
-      print("Error3: $e");
-    }
+    Get.offAllNamed(AppRoutes.languageSelection);
+
+    // Api call to login
+    // Uncomment the following lines to enable actual API call
+
+    // try {
+    //   final response = await repository.login(loginRequest);
+    //   isLoading.value = false;
+    //   if (response?.access.isNotEmpty ?? false) {
+    //     Get.offAllNamed(AppRoutes.languageSelection);
+    //   } else {
+    //     errorMessage.value = "Invalid credentials or network issue";
+    //   }
+    // } catch (e) {
+    //   isLoading.value = false;
+    //   errorMessage.value = "An error occurred: $e";
+    //   print("Error3: $e");
+    // }
+    //
   }
 
   void navigateToForgetPassword() {

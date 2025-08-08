@@ -14,6 +14,9 @@ class AppButton extends StatelessWidget {
   final FontWeight? fontWeight;
   final bool isLoading;
   final double? elevation;
+  final Color? fillColor;
+  final Color? borderColor; // New parameter for border color
+  final double? borderWidth; // New parameter for border width
 
   const AppButton({
     super.key,
@@ -27,12 +30,16 @@ class AppButton extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.fontWeight,
-    this.isLoading = false, this.elevation,
+    this.isLoading = false,
+    this.elevation,
+    this.fillColor,
+    this.borderColor = Colors.black, // Default border color
+    this.borderWidth , // Default border width
   });
 
   @override
   Widget build(BuildContext context) {
-    final double radius = borderRadius ?? 24;
+    final double radius = borderRadius ?? 10;
 
     return SizedBox(
       width: buttonWidth ?? double.infinity,
@@ -41,12 +48,12 @@ class AppButton extends StatelessWidget {
         onTap: isLoading ? () {} : onPressed,
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFFB95FEC), Color(0xff5671CC)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+            color: fillColor ?? Color(0xffE53E3E),
             borderRadius: BorderRadius.circular(radius),
+            border: Border.all(
+              color: borderColor ?? Colors.transparent, // Apply the border color
+              width: borderWidth ?? 00, // Apply the border width
+            ),
           ),
           child: ElevatedButton(
             onPressed: isLoading ? () {} : onPressed,
@@ -98,3 +105,4 @@ class AppButton extends StatelessWidget {
     );
   }
 }
+

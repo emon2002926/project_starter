@@ -18,122 +18,118 @@ class OtpVerificationPage extends StatelessWidget {
     final width = mediaQuery.size.width;
 
     return Scaffold(
-      // appBar: BuildAppBar(
-      //   title: "Verify Email",
-      //   iconColor: AppColors.instance.white50,
-      //   titleColor: AppColors.instance.white50,
-      // ),
+
       backgroundColor: AppColors.instance.white50,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(
-            vertical: height * 0.08,
+            vertical: height * 0.14,
             horizontal: width * 0.06,
           ),
-          child: Container(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
 
-            decoration: BoxDecoration(
-              color: Colors.grey.shade200,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: height * 0.05),
+                  SizedBox(height: height * 0.05),
 
-                    // Title
-                    AppText(
-                      data: 'Check your email ',
-                      fontSize: width * 0.055,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    SizedBox(height: height * 0.015),
+                  // Title
+                  AppText(
+                    data: 'Check your email ',
+                    fontSize: width * 0.08,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff18365D),
 
-                    // Subtitle
-                    AppText(
-                      data:
-                      'We sent a reset link to astro@gmail.com\nPlease enter the 6 digit code.',
-                      fontSize: width * 0.035,
-                      textAlign: TextAlign.center,
-                      height: 1.4,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    SizedBox(height: height * 0.05),
+                  ),
+                  SizedBox(height: height * 0.015),
 
-                    // OTP Fields (6 OTP TextFields)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: List.generate(6, (index) {
-                        return SizedBox(
-                          width: width * 0.11,
-                          child: TextField(
-                            controller: controller.otpControllers[index],
-                            focusNode: controller.focusNodes[index],
-                            onChanged: (value) => controller.onOtpChanged(value, index),
-                            keyboardType: TextInputType.number,
-                            textAlign: TextAlign.center,
-                            maxLength: 1,
-                            decoration: InputDecoration(
-                              counterText: '',
-                              filled: true,
-                              fillColor: Colors.white,
-                              contentPadding: EdgeInsets.all(width * 0.02),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(color: Colors.grey),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: AppColors.instance.dark400,
-                                  width: 2,
-                                ),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(color: Colors.red),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(color: Colors.red, width: 2),
+                  // Subtitle
+                  AppText(
+                    data:
+                    'We sent a reset link to astro@gmail.com\nPlease enter the 6 digit code.',
+                    fontSize: width * 0.040,
+                    textAlign: TextAlign.center,
+                    height: 1.4,
+                    fontWeight: FontWeight.normal,
+                    color: Color(0xff94A2B8),
+
+                  ),
+                  SizedBox(height: height * 0.05),
+
+                  // OTP Fields (6 OTP TextFields)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: List.generate(6, (index) {
+                      return SizedBox(
+                        width: width * 0.11,
+                        child: TextField(
+                          controller: controller.otpControllers[index],
+                          focusNode: controller.focusNodes[index],
+                          onChanged: (value) => controller.onOtpChanged(value, index),
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          maxLength: 1,
+                          decoration: InputDecoration(
+                            counterText: '',
+                            filled: true,
+                            fillColor: Colors.white,
+                            contentPadding: EdgeInsets.all(width * 0.02),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                  color: Color(0xffE2E8F0)
                               ),
                             ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(
+                                color: AppColors.instance.dark400,
+                                width: 2,
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(color: Colors.red),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(color: Colors.red, width: 2),
+                            ),
                           ),
-                        );
-                      }),
-                    ),
-                    SizedBox(height: height * 0.015),
-
-                    // Resend Link
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: GestureDetector(
-                        onTap: controller.resendOtp,
-                        child: AppText(
-                          data: 'Resend OTP',
-                          fontSize: width * 0.035,
-                          fontWeight: FontWeight.bold,
                         ),
-                      ),
-                    ),
-                    SizedBox(height: height * 0.06),
+                      );
+                    }),
+                  ),
+                  SizedBox(height: height * 0.015),
 
-                    // Verify Button
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: AppButton(
-                        buttonText: "Verify Code",
-                        onPressed: controller.verifyCode,
-                        borderRadius: 25,
-                        buttonHeight: 48,
+                  // Resend Link
+
+                  SizedBox(height: height * 0.03),
+
+                  // Verify Button
+                  AppButton(
+                    buttonText: "Verify Code",
+                    onPressed: controller.verifyCode,
+                    borderRadius: 10,
+                    buttonHeight: 48,
+                  ),
+                  SizedBox(height: height * 0.02),
+
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                      onTap: controller.resendOtp,
+                      child: AppText(
+                        data: 'Resend OTP',
+                        fontSize: width * 0.035,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: height * 0.03),
-                  ],
-                ),
+                  ),
+
+                ],
               ),
             ),
           ),

@@ -14,121 +14,146 @@ import '../view_models/login_controller.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
   final controller = Get.put(LoginController()); // Binding the controller
+
+
+
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+
+    final width = mediaQuery.size.width;
     return Scaffold(
-      backgroundColor: AppColors.instance.appBackground,
+      backgroundColor: Colors.white,
       extendBodyBehindAppBar: false,
       body: Stack(
         children: [
           SafeArea(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).size.height * 0.08,
+                  // vertical: MediaQuery.of(context).size.height * 0.08,
                   horizontal: MediaQuery.of(context).size.height * 0.02,
               ),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.instance.white50,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: SingleChildScrollView(
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minHeight: MediaQuery.of(context).size.height,
-                      ),
-                      child: IntrinsicHeight(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.03,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(
+                      minHeight: MediaQuery.of(context).size.height,
+                    ),
+                    child: IntrinsicHeight(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.03,
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Image.asset(AppAssertImage.instance.searchLogo),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: AppText(data: "DealDetector",
+                              fontSize: MediaQuery.of(context).size.width * 0.08, // Dynamically set font size based on screen width
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xff18365D),
                             ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: AppText(data: "Welcome to Trade Pilot", fontSize: 22,
-                                fontWeight: FontWeight.w500,
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: AppText(data: "Never miss a deal again",
+                              fontSize: width* 0.035,
+                            color: Color(0xff94A2B8),
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.02,
+                          ),
+                          // const SizedBox(height: 8),
+                          AppTextField(
+                            label:"Email" ,
+                            hintText: "Enter your user name here",
+                            controller: controller.usernameController,
+                            focusNode: controller.usernameFocusNode,
+                          ),
+                          const SizedBox(height: 16),
+                          AppTextField(
+                            label: "Password",
+                            hintText: "Enter your password",
+                            controller: controller.passwordController,
+                            focusNode: controller.passwordFocusNode,
+                            obscureText: true,
+                            suffixIcon: Icons.visibility_off,
+                          ),
+                          const SizedBox(height: 16),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: GestureDetector(
+                              onTap: controller.navigateToForgetPassword,
+                              child: AppText(data: "Forget Password?", fontWeight: FontWeight.w400,color: Colors.redAccent,
+                                fontSize: 16,
                               ),
                             ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.06,
-                            ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: AppText(data: "Sign up to get started", fontSize: 16,),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.02,
-                            ),
-                            // const SizedBox(height: 8),
-                            AppTextField(
-                              hintText: "Enter your user name here",
-                              controller: controller.usernameController,
-                              focusNode: controller.usernameFocusNode,
-                            ),
-                            const SizedBox(height: 16),
-                            AppTextField(
-                              hintText: "Enter your password",
-                              controller: controller.passwordController,
-                              focusNode: controller.passwordFocusNode,
-                              obscureText: true,
-                              suffixIcon: Icons.visibility_off,
-                            ),
-                            const SizedBox(height: 16),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: GestureDetector(
-                                onTap: controller.navigateToForgetPassword,
-                                child: AppText(data: "Forget Password?", fontWeight: FontWeight.w400,
-                                  fontSize: 16,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 8),
+                          ),
+                          const SizedBox(height: 8),
 
-                            AppButton(
-                              buttonText: "Login",
-                              onPressed: controller.login, // Trigger login method
-                              borderRadius: 25,
-                              buttonHeight: 48,
-                              elevation: 4,
-                            ),
-                            const SizedBox(height: 24),
-                            const Row(
-                              children: [
-                                Expanded(child: Divider(color: Colors.grey)),
-                                Padding(padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: Text("or", style: TextStyle(color: Colors.grey)),
-                                ),
-                                Expanded(child: Divider(color: Colors.grey)),
-                              ],
-                            ),
-                            const SizedBox(height: 24),
-                            SocialLoginButtons(title: "Continue with Google", onPressed: () {}, iconPath: AppAssertImage.instance.googleLogo),
-                            const SizedBox(height: 16),
-                            SocialLoginButtons(title: "Continue with Apple", onPressed: () {}, iconPath: AppAssertImage.instance.appleLogo),
-                            const SizedBox(height: 24),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const AppText(
-                                  data: "Don't have an account? ",
-                                  fontSize: 14,
-                                ),
-                                GestureDetector(
-                                  onTap: () => Get.toNamed(AppRoutes.register),
-                                  child: const AppText(
-                                    data: "Register Now",
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                          AppButton(
+                            buttonText: "Login",
+                            onPressed: controller.login, // Trigger login method
+                            borderRadius: 10,
+                            buttonHeight: 48,
+                            // elevation: 4,
+                          ),
+                          const SizedBox(height: 10,),
+                          AppButton(
+                            buttonText: "Sign up",
+                            onPressed: controller.login, // Trigger login method
+                            borderRadius: 10,
+                            buttonHeight: 48,
+                            fillColor: Colors.white,
+                            textColor: Colors.black,
+                            borderColor: AppColors.instance.primaryFillColor,
+                            borderWidth: 1.5,
+                            // elevation: 4,
+                          ),
+                          const SizedBox(height: 20),
+                          const Row(
+                            children: [
+                              Expanded(child: Divider(color: Color(0xff94A2B8))),
+                              Padding(padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text("or", style: TextStyle(color: Color(0xff94A2B8))),
+                              ),
+                              Expanded(child: Divider(color: Color(0xff94A2B8))),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          SocialLoginButtons(title: "Continue with Google", onPressed: () {}, iconPath: AppAssertImage.instance.googleLogo),
+                          const SizedBox(height: 16),
+                          SocialLoginButtons(title: "Continue with Apple", onPressed: () {}, iconPath: AppAssertImage.instance.appleLogo,
+
+                          ),
+                          const SizedBox(height: 24),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const AppText(
+                                data: "Save money on groceries with smart deals alerts",
+                                fontSize: 14,
+                              ),
+                              // GestureDetector(
+                              //   onTap: () => Get.toNamed(AppRoutes.register),
+                              //   child: const AppText(
+                              //     data: "Register Now",
+                              //       fontWeight: FontWeight.bold,
+                              //       fontSize: 15,
+                              //   ),
+                              // ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),

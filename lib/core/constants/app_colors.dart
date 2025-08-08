@@ -94,8 +94,8 @@ class AppColors {
 
   ////////////////Auth Screen Color
   final Color welcomeTextColor = const Color(0xFF333333);
-  final Color hintTextColor = const Color(0xFF000000);
-  final Color labelTextColor = const Color(0xFF000000);
+  // final Color hintTextColor = const Color(0xFF000000);
+  // final Color labelTextColor = const Color(0xFF000000);
 
   final Color primary = const Color(0xFFBDF0D5);
   final Color background = const Color(0xFFF5F5F5);
@@ -107,6 +107,10 @@ class AppColors {
   final Color softMint = const Color(0xFFF5F5F5);
   final Color softMintBackground = const Color(0xFFFFFFFF);
   final Color cardBackground = const Color(0xFFF5F5F5);
+  final Color primaryFillColor = const Color(0xffE53E3E);
+
+  final Color labelTextColor = const Color(0xff18365D);
+  final Color hintTextColor = const Color(0xff94A2B8);
 
 
 

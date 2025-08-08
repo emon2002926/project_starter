@@ -1,12 +1,8 @@
 import 'dart:async';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import '../../../routes/app_routes.dart';
+import '../../../../routes/app_routes.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:get/get.dart';
-import 'dart:async';
 
 class SplashController extends GetxController {
   final box = GetStorage();  // GetStorage instance
@@ -30,7 +26,7 @@ class SplashController extends GetxController {
         Get.offNamed(AppRoutes.home);
       } else {
         // If no access token, navigate to the sign_in screen
-        Get.offNamed(AppRoutes.login);
+        Get.offNamed(AppRoutes.home);
       }
     });
   }

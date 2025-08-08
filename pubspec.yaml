@@ -27,8 +27,6 @@ dependencies:
   flutter_secure_storage: ^9.2.4
 
 
-
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -43,5 +41,6 @@ flutter:
 
   assets:
     - assets/icons/
+    - assets/flags/
 
 

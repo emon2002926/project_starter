@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_starter/core/constants/app_colors.dart';
+import 'package:project_starter/core/widget/text/app_text.dart';
 class AppTextField extends StatelessWidget {
   final String? label;
   final String hintText;
@@ -9,6 +11,8 @@ class AppTextField extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final FocusNode? focusNode;
   final Color? borderColor;
+  final Color? labelColor;
+  final Color? hintColor;
 
   const AppTextField({
     super.key,
@@ -21,6 +25,8 @@ class AppTextField extends StatelessWidget {
     this.validator,
     this.focusNode,
     this.borderColor,
+    this.labelColor,
+    this.hintColor,
   });
 
   @override
@@ -32,12 +38,12 @@ class AppTextField extends StatelessWidget {
       children: [
         // Conditional label display
         if (label != null && label!.isNotEmpty)
-          Text(
-            label!,
-            style: theme.textTheme.labelLarge?.copyWith(
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
-            ),
+          AppText(
+            data:label!,
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
+            color: labelColor ?? Color(0xff18365D),
+
           ),
         const SizedBox(height: 8),
         TextFormField(
@@ -53,13 +59,13 @@ class AppTextField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(
-              color: Colors.grey.shade600,
+              color: hintColor??AppColors.instance.hintTextColor,
               fontSize: 16, // Match the font size to the label
               fontWeight: FontWeight.w400,
               fontFamily: 'Poppins',
             ),
             filled: true,
-            fillColor: const Color(0xFFF9F9F9), // Light background for input
+            fillColor: const Color(0xffE2E8F0), // Light background for input
             prefixIcon: prefixIcon != null
                 ? Icon(prefixIcon, color: Colors.grey[700], size: 20)
                 : null,
@@ -67,21 +73,21 @@ class AppTextField extends StatelessWidget {
                 ? Icon(suffixIcon, color: Colors.grey[700], size: 20)
                 : null,
             contentPadding: const EdgeInsets.symmetric(
-              vertical: 18, // Increased vertical padding for bigger text field
+              vertical: 12, // Increased vertical padding for bigger text field
               horizontal: 14,
             ),
             // Outline border with pink color and border radius
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide(color: borderColor ?? Colors.white, width: 1),
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: borderColor ?? Colors.transparent, width: 1),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: const BorderSide(color:  Color(0xf9f3bac9), width: 1),
+              borderRadius: BorderRadius.circular(12),
+              borderSide:  BorderSide(color:  Colors.transparent, width: 1),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: const BorderSide(color: Color(0xc0f3bac9), width: 1.0),
+              borderRadius: BorderRadius.circular(12),
+              borderSide:  BorderSide(color: Colors.transparent, width: 1.0),
             ),
           ),
         ),

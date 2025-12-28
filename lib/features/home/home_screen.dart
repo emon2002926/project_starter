@@ -4,63 +4,126 @@ import '../../../core/constants/app_assert_image.dart';
 import '../../core/widget/bottom_navigation/bottom_navigation.dart';
 import '../favorite/views/favorite_screen.dart';
 import '../notification/views/notification_screen.dart';
+import '../shopping_list/views/shopping_list_screen.dart';
 
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   int currentIndex = 0;
+  int lastTapTime = 0;
+
+  final homeNavKey = GlobalKey<NavigatorState>();
+  final notificationNavKey = GlobalKey<NavigatorState>();
+  final favoriteNavKey = GlobalKey<NavigatorState>();
+  final shoppingListNavKey = GlobalKey<NavigatorState>();
 
   void onTabSelected(int index) {
-    setState(() => currentIndex = index);
+    final currentTime = DateTime.now().millisecondsSinceEpoch;
+
+    // Double-tap detection: If the same tab is tapped twice in quick succession
+    if (index == currentIndex && currentTime - lastTapTime < 500) {
+      // If double-tapped on the same tab, pop all the routes and go back to the first screen of the tab
+      if (index == 0) {
+        homeNavKey.currentState?.popUntil((route) => route.isFirst);
+      } else if (index == 1) {
+        notificationNavKey.currentState?.popUntil((route) => route.isFirst);
+      } else if (index == 2) {
+        favoriteNavKey.currentState?.popUntil((route) => route.isFirst);
+      } else if (index == 3) {
+        shoppingListNavKey.currentState?.popUntil((route) => route.isFirst);
+      }
+    } else {
+      setState(() {
+        currentIndex = index;
+      });
+    }
+
+    lastTapTime = currentTime;
   }
 
   @override
   Widget build(BuildContext context) {
-
+    // Screens corresponding to each tab
     final screens = [
-      // HomeScreen(),
       HomeView(),
       NotificationScreen(),
+      ShoppingListScreen(),
       FavoriteScreen(),
-      Scaffold(),
     ];
-
 
     return Scaffold(
       backgroundColor: Colors.grey,
-      extendBody: true, // Allows background to extend beh
-      // ind nav bar if translucent
-      body: Stack(
-        children: [
-          // 🔹 Background image
-          Positioned.fill(
-            child: Image.asset(
-              AppAssertImage.instance.backgroundImage,
-              fit: BoxFit.cover,
+      extendBody: true,
+      body:
+      WillPopScope(
+        onWillPop: () {
+          // Handle back navigation for each tab
+          if (currentIndex == 0 && homeNavKey.currentState!.canPop() ?? false) {
+            homeNavKey.currentState?.pop();
+            return Future.value(false);
+          } else if (currentIndex == 1 && notificationNavKey.currentState!.canPop() ?? false) {
+            notificationNavKey.currentState?.pop();
+            return Future.value(false);
+          } else if (currentIndex == 2 && favoriteNavKey.currentState!.canPop() ?? false) {
+            favoriteNavKey.currentState?.pop();
+            return Future.value(false);
+          }
+          else if (currentIndex == 3 && shoppingListNavKey.currentState!.canPop() ?? false) {
+            shoppingListNavKey.currentState?.pop();
+            return Future.value(false);
+          }
+
+
+          return Future.value(true);
+        },
+        child: IndexedStack(
+          index: currentIndex,
+          children: [
+            Navigator(
+              key: homeNavKey,
+              onGenerateInitialRoutes: (navigator, initialRoute) {
+                return [
+                  MaterialPageRoute(builder: (context) => screens[0])
+                ];
+              },
             ),
-          ),
+            Navigator(
+              key: notificationNavKey,
+              onGenerateInitialRoutes: (navigator, initialRoute) {
+                return [
+                  MaterialPageRoute(builder: (context) => screens[1])
+                ];
+              },
+            ),
+            Navigator(
+              key: favoriteNavKey,
+              onGenerateInitialRoutes: (navigator, initialRoute) {
+                return [
+                  MaterialPageRoute(builder: (context) => screens[2])
+                ];
+              },
+            ),
+            Navigator(
+              key: shoppingListNavKey,
+              onGenerateInitialRoutes: (navigator, initialRoute) {
+                return [
+                  MaterialPageRoute(builder: (context) => screens[3])
+                ];
+              },
+            ),
 
-          // 🔹 Main screen content
-          Positioned.fill(
-            child: screens[currentIndex],
-          ),
-        ],
+          ],
+        ),
       ),
-
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: currentIndex,
-        onTabSelected: (index) {
-          setState(() => currentIndex = index);
-        },
+        onTabSelected: onTabSelected,
       ),
     );
-
   }
 }

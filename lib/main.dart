@@ -1,34 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:project_starter/routes/app_routes_file.dart';
+import 'core/bindings/app_bindings.dart';
+import 'core/util/app_navigation.dart';
 import 'features/home/home_screen.dart';
-import 'features/onboarding/splash/controller/splash_controller.dart';
 void main() {
-  Get.put(SplashController());  // Register the controller
-  runApp(const MainEntryApp());
+  AppBindings.init();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  runApp(const MyApp());
 }
-class MainEntryApp extends StatelessWidget {
-  const MainEntryApp({super.key});
+
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context, child) {
-        return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Your App Name',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            useMaterial3: true,
+    return
+      GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        navigatorKey: AppNavigation.navigatorKey,
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              statusBarIconBrightness: Brightness.light,
+              statusBarBrightness: Brightness.dark,
+            ),
           ),
-          home: const HomeScreen(),
-          getPages: appRootRoutesFile,
-        );
-      },
-    );
+        ),
+        // home: const OnboardingScreen(),
+        home: const HomeScreen(),
+
+      );
   }
+
 }

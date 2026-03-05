@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:project_starter/core/user_profile/user_profile.dart';
 import 'dart:convert';
 import '../constants/app_constant.dart';
-import '../utils/storage_service.dart';
+import '../util/storage_service.dart';
 
 
 class UserController extends GetxController {

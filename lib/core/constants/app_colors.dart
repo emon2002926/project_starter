@@ -9,11 +9,16 @@ class AppColors {
   ////////
   final Color boxBg = const Color(0xffEBF4FF);
   final Color boxBg2 = const Color(0xffBDD3EC);
-  final Color appBackground = const Color(0xfff4f4f5);
+  final Color appBackground = const Color(0xff2D2D2D);
   final Color appBarBackground = const Color(0xffd5ecc5);
-  final Color profileBackground = const Color(0xC7CFCFCF);
+  final Color profileBackground = const Color(0x1A2C2B2B);
 
-  final Color primaryTextColor = const Color(0xff333333);
+  final Color headLineTextColor = const Color(0xff00193F);
+  final Color titleTextColor = const Color(0xff2C2B2B);
+  final Color normalTextColor = const Color(0xff0F172A);
+  final Color hintTextColor = const Color(0xff64748B);
+  final Color strokeColor = const Color(0xff939393);
+
   final Color subTextColor = const Color(0xff757575);
   final Color startBtnColor = const Color(0xff757575);
   final Color btnColor = const Color(0xFFBDF0D5);
@@ -89,16 +94,15 @@ class AppColors {
   final Color white900 = const Color(0xff646464);
 
 ////////////////title color
-  final Color titleTextColor = const Color(0xFF333333);
+//   final Color titleTextColor = const Color(0xFFF6CB81);
 
 
   ////////////////Auth Screen Color
   final Color welcomeTextColor = const Color(0xFF333333);
-  // final Color hintTextColor = const Color(0xFF000000);
-  // final Color labelTextColor = const Color(0xFF000000);
+  final Color labelTextColor = const Color(0xFF000000);
 
   final Color primary = const Color(0xFFBDF0D5);
-  final Color background = const Color(0xFFF5F5F5);
+  final Color background = const Color(0xFFF8F5F1);
   final Color textFilledColor = const Color(0xFFB8ECC5);
   final Color textFilledBackground = const Color(0xFFC4F8D2);
   final Color frostedGlassColor = const Color(0xFF99E1AA);
@@ -107,10 +111,7 @@ class AppColors {
   final Color softMint = const Color(0xFFF5F5F5);
   final Color softMintBackground = const Color(0xFFFFFFFF);
   final Color cardBackground = const Color(0xFFF5F5F5);
-  final Color primaryFillColor = const Color(0xffE53E3E);
-
-  final Color labelTextColor = const Color(0xff18365D);
-  final Color hintTextColor = const Color(0xff94A2B8);
+  final Color primaryBtnColor = const Color(0xFFF6CB81);
 
 
 

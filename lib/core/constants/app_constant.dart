@@ -7,13 +7,14 @@ class AppConstant {
   final String font = "Montserrat";
   final String playfair = "PlayfairDisplay";
   final String poppins = "Poppins";
-  final String GOOGLE_MAPS_API_KEY = "API_KEY";
-  final String scavengerHunt = "A Scavenger Hunt";
   final String freeTour = "Free Tour";
   final double DEAFULT_CAMERA_ZOOM = 15;
-  final String baseUrl = 'http://10.10.7.76:8000';
-  // Endpoints
-  final String loginEndpoint = '/api/auth/sign_in/';
-  final String singUpEndpoint = '/api/auth/register/';
+
+   final String baseUrl = 'https://sofiapi.dsrt321.online';
+    String loginEndpoint = '${instance.baseUrl}/api/auth/login/';
+  static const String signUpEndpoint = '/api/auth/signup/';
+  static const String forgotPasswordEndpoint = '/api/auth/forgot-password/';
+  static const String verifyCodeEndpoint = '/api/auth/verify_code/';
+  static const String resetPasswordEndpoint = '/api/auth/set_new_password/';
 
 }

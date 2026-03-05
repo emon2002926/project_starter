@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_starter/features/home/home_view.dart';
-import '../../../core/constants/app_assert_image.dart';
-import '../../core/widget/bottom_navigation/bottom_navigation.dart';
+import '../../core/widgets/bottom_navigation/bottom_navigation.dart';
 import '../favorite/views/favorite_screen.dart';
 import '../notification/views/notification_screen.dart';
 import '../shopping_list/views/shopping_list_screen.dart';

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../constants/app_assert_image.dart';
+import '../../util/app_navigation.dart';
 import '../../util/screen_size.dart';
+import '../../util/storage_service.dart';
 import '../text/app_text.dart';
 class CustomAppDrawer extends StatelessWidget {
   const CustomAppDrawer({super.key});
@@ -153,8 +155,8 @@ class CustomAppDrawer extends StatelessWidget {
   }
 
   void _handleLogout(BuildContext context) {
-    // StorageService.clearAll();
+    StorageService.clearToken();
     // AppNavigation.pushAndClear(context, const SignInScreen());
-    // Get.offAll(SignInScreen());
+    // Get.offAll(OnboardingScreen());
   }
 }
